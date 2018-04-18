@@ -10,9 +10,14 @@ import {User} from '../_models';
 })
 export class HeaderComponent implements OnInit {
 
-  currentUser: User;
+    currentUser: User;
     isConnected: boolean;
-  constructor(private userService: UserService) { }
+    user: any;
+    searchValue: any = {
+        content : ''
+    };
+
+    constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.currentUser = this.userService.currentUser;
@@ -25,40 +30,20 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-
-  
-  user:any;
-
-
-   searchValue: any = {
-    content : ""
-   };
-
-
-search(searchValue) {
-
-
-  console.log("le modele ");
-              console.log(this.searchValue.content);
-  
-  this.userService.search(this.searchValue.content)
-      .subscribe(
-          
-          data => {
-            this.searchValue = data
-              console.log("le searchValue est");
-              console.log(data);
-                      
-          },
-          error => {
-
-              console.log("une erreur ");
-            
-          });
-}
-
-
-
+    search(searchValue) {
+      console.log('le modele ');
+                  console.log(this.searchValue.content);
+      this.userService.search(this.searchValue.content)
+          .subscribe(
+              data => {
+                this.searchValue = data;
+                  console.log('le searchValue est');
+                  console.log(data);
+              },
+              error => {
+                  console.log('une erreur ');
+              });
+    }
 
 
 }

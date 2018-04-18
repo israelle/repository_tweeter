@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
     returnUrl: string;
+    road: any = {};
+    newRoad = '';
 
     constructor(
         private route: ActivatedRoute,
@@ -28,8 +30,7 @@ export class LoginComponent implements OnInit {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-    road:any ={};
-    newRoad : string = "";
+
 
     login() {
         this.loading = true;
@@ -37,17 +38,11 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
 
-                    console.log("JE suis le data");
+                    console.log('JE suis le data');
                     console.log(data);
 
                     this.road = data;
-                    this.newRoad = this.road.login
-
-                    
-
-
-                    
-                    //this.router.navigate(['/home/:login',  this.newRoad ]);
+                    this.newRoad = this.road.login;
                 },
                 error => {
                     this.alertService.error(error);

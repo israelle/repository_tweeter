@@ -13,170 +13,129 @@ export class MyProfileComponent implements OnInit {
   currentUser: any;
   tweets: any = [];
   formData: any = [];
+  number: any;
+  numberIfollow: any;
+  numberOffollowers: any;
+  lastTweet: any =  [];
+  users: any =  [];
+  allPeopleFollowBy: any =  [];
+  user = 'Corentin';
+  allPeopleMyFollowers: any = [];
+
+
+
     constructor(private userService: UserService) {}
 
   ngOnInit() {
       this.currentUser = this.userService.currentUser;
       console.log(this.currentUser);
-      this.numberOfTweet("Corentin");
-      this.numberPeopleIfollow("Corentin");
-      this.numberFollowers("Corentin");
-      this.showLastTweet("Corentin");
-      
+      this.numberOfTweet('Corentin');
+      this.numberPeopleIfollow('Corentin');
+      this.numberFollowers('Corentin');
+      this.showLastTweet('Corentin');
   }
 
-  
 
-  addNewTweet(tweet: Tweet) {
-      //this.userService.addNewTweet(tweet);
-  }
+  numberOfTweet(st: string) {
 
-  number:any;
-  numberIfollow:any;
-  numberOffollowers:any;
-
-  numberOfTweet(st : string) {
-
-    console.log("le modele ");
+    console.log('le modele ');
                 console.log(st);
-    
     this.userService.numberOfTweet(st)
         .subscribe(
-            
             data => {
-              this.number = data
-                console.log("le nombre de tweet est de");
+              this.number = data;
+                console.log('le nombre de tweet est de');
                 console.log(data);
-                        
             },
             error => {
 
-                console.log("une erreur ");
-              
+                console.log('une erreur ');
             });
 }
 
-numberPeopleIfollow(st : string) {
+numberPeopleIfollow(st: string) {
 
-  console.log("le modele ");
+  console.log('le modele ');
               console.log(st);
-  
   this.userService.numberOfPeopleIfollw(st)
       .subscribe(
-          
           data => {
-            this.numberIfollow = data
-              console.log("le nombre de tweet est de");
+            this.numberIfollow = data;
+              console.log('le nombre de tweet est de');
               console.log(data);
-                      
           },
           error => {
 
-              console.log("une erreur ");
-            
+              console.log('une erreur ');
           });
 }
 
 
+    numberFollowers(st: string) {
+      console.log('le modele ');
+                  console.log(st);
+      this.userService.numberOfFollowers(st)
+          .subscribe(
+              data => {
+                this.numberOffollowers = data;
+                  console.log('le nombre de tweet est de');
+                  console.log(data);
+              },
+              error => {
+                  console.log('une erreur ');
+              });
+    }
 
-numberFollowers(st : string) {
 
-  console.log("le modele ");
+showLastTweet(st: string) {
+
+  console.log('le modele ');
               console.log(st);
-  
-  this.userService.numberOfFollowers(st)
-      .subscribe(
-          
-          data => {
-            this.numberOffollowers = data
-              console.log("le nombre de tweet est de");
-              console.log(data);
-                      
-          },
-          error => {
-
-              console.log("une erreur ");
-            
-          });
-}
-
-lastTweet : any =  [];
-users : any =  [];
-allPeopleFollowBy : any =  [];
-
-showLastTweet(st : string) {
-
-  console.log("le modele ");
-              console.log(st);
-  
   this.userService.showLastTweets(st)
       .subscribe(
-          
           data => {
-            this.lastTweet = data
-              console.log("le nombre de tweet est de");
+            this.lastTweet = data;
+              console.log('le nombre de tweet est de');
               console.log(data);
-                      
           },
           error => {
 
-              console.log("une erreur ");
-            
+              console.log('une erreur ');
           });
 }
 
-user : string = "Corentin";
 
 showAllPeopleFollowBy(user) {
 
 
-  console.log("le modele ");
+  console.log('le modele');
               console.log(user);
-  
   this.userService.showAllPeopleFollowBy(user)
       .subscribe(
-          
           data => {
-            this.allPeopleFollowBy = data
-              console.log("le nombre de tweet est de");
+            this.allPeopleFollowBy = data;
+              console.log('le nombre de tweet est de');
               console.log(data);
-                      
           },
           error => {
 
-              console.log("une erreur ");
-            
+              console.log('une erreur ');
           });
 }
 
-
-allPeopleMyFollowers:any = [];
-
-showAllMyfollwers(user) {
-
-
-  console.log("le modele ");
-              console.log(user);
-  
-  this.userService.showAllMyFollwer(user)
-      .subscribe(
-          
-          data => {
-            this.allPeopleMyFollowers = data
-              console.log("le nombre de tweet est de");
-              console.log(data);
-                      
-          },
-          error => {
-
-              console.log("une erreur ");
-            
-          });
-}
-
-
-
-
-  
+    showAllMyfollwers(user) {
+      console.log('le modele ');
+      console.log(user);
+      this.userService.showAllMyFollwer(user)
+          .subscribe(
+              data => {
+                this.allPeopleMyFollowers = data;
+                  console.log('le nombre de tweet est de');
+                  console.log(data);
+              },
+              error => {
+                  console.log('une erreur ');
+              });
+    }
 
 }
