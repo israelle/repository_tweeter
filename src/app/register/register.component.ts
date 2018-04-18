@@ -2,7 +2,6 @@
 import { Router } from '@angular/router';
 
 import { AlertService, UserService } from '../_services/index';
-import { NgForm } from '@angular/forms';
 import {User} from '../_models';
 
 @Component({
